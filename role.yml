@@ -4,3 +4,4 @@
   roles:
     - { role: ssh }
     - { role: network, wifi_ssid: "", wifi_psk: "" }
+    - { role: k3s }
