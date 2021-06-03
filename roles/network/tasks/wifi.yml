@@ -1,0 +1,23 @@
+---
+  - name: Install netplan
+    apt:
+      name: "{{ netplan_packages }}"
+      state: present
+    become: true
+    register: result
+    until: result is successful
+
+  - name: Configuring Netplan
+    template:
+      src: wifi-config.yaml.j2
+      dest: "{{ netplan_config_file }}"
+    vars:
+      wifi_ssid: "{{ wifi_ssid }}"
+      wifi_psk: "{{ wifi_psk }}"
+    become: true
+    when: netplan_configuration != []
+    notify: netplan apply config
+  
+  - name: make interface up
+    ansible.builtin.shell:
+      cmd: sudo ip link set wlan0 up

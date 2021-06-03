@@ -1,0 +1,6 @@
+---
+  - include: wifi.yml
+    tags: [ wifi ]
+
+  - include: hostname.yml
+    tags: [ hostname ]

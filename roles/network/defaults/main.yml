@@ -1,0 +1,15 @@
+---
+# defaults file for ansible-netplan
+netplan_config_file: /etc/netplan/ansible-config.yaml
+
+# switch to enable/disable the role completely
+netplan_enabled: true
+
+netplan_packages:
+  - nplan
+  - netplan.io
+
+netplan_configuration:
+  {}
+
+node_number: 0

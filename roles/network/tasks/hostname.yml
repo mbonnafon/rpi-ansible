@@ -1,0 +1,14 @@
+---
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: k3s-master
+  when: "'master' in group_names"
+
+- name: Increment node_number
+  set_fact: node_number={{ node_number | int + 1 }}
+  when: "'node' in group_names"
+
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "k3s-node-{{ node_number }}"
+  when: "'node' in group_names"
